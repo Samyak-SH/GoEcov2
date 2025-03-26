@@ -2,6 +2,10 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+## Server side .env file
+    GOOGLE_API_KEY = 
+    PORT = 
+
 ## Get started
 
 1. Install dependencies
