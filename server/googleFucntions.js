@@ -25,7 +25,8 @@ async function calDistance(req,res){
             const distance = data.rows[0].elements[0].distance.value //in meters
             const duration = data.rows[0].elements[0].duration.value //in seconds
             console.log(distance, " ", duration);
-            res.status(200).json({distance : distance, duration : duration, message : "yay"});
+            const fare = calcFare(distance);
+            res.status(200).json({fare : fare, distance : distance, duration : duration, message : "yay"});
             //TODO-proper responses and better error handling
             //----------------------------------
             //   I AM HUNGRY BYE
@@ -35,6 +36,36 @@ async function calDistance(req,res){
     catch(err){
         console.err("error while calculating distance\n", err);
         res.status(500).json({error : "Internal server error", details : err.message});
+    }
+}
+
+function calcFare(distance){
+    if(distance >= 0 && distance <= 2000){
+        return 10.00;
+    }
+    else if(distance <= 4000){
+        return 20.00;
+    }
+    else if(distance <= 6000){
+        return 30.00;
+    }
+    else if(distance <= 8000){
+        return 40.00;
+    }
+    else if(distance <= 10000){
+        return 50.00;
+    }
+    else if(distance <= 12000){
+        return 60.00;
+    }
+    else if(distance <= 20000){
+        return 70.00;
+    }
+    else if(distance <= 25000){
+        return 80.00;
+    }
+    else{
+        return 90.00
     }
 }
 
